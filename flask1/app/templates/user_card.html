@@ -1,0 +1,32 @@
+<div>
+	<div>
+	  <img src="{{user.avatar()}}" class='avatar user_card_avatar'>
+	</div>
+	<div class='user_card_right'>
+	  <h2 class='user_card_nickname'>
+		<a href="{{url_for('personal',nickname=user.nickname)}}">{{user.nickname}}</a>
+	  </h2>
+	  <p>
+		<a href="{{url_for('personal_blog',nickname=user.nickname)}}">微博数:{{user.posts.count()}}</a>
+	  </p>
+	  <p>
+		<a href="{{url_for('personal_concern',nickname=user.nickname)}}">关注:{{user.concern.__len__()}}</a>
+		<span style='color:#BBB'>|</span>
+		<a href="{{url_for('personal_concerned',nickname=user.nickname)}}">粉丝:{{user.concerned.__len__()}}</a>
+	  </p>
+	  <p>
+		{%if g.user!=user%}
+		  {%if g.user.has_concern(user)%}
+			<a href="{{url_for('unconcern_ta',id=user.id)}}">取消关注</a>
+		  {%else%}
+			<a href="{{url_for('concern_ta',id=user.id)}}">关注ta</a>
+		  {%endif%}
+		  {%if g.user.has_black(user)%}
+		    <a href="{{url_for('unblack_ta',id=user.id)}}">取消拉黑</a>
+		  {%else%}	
+			<a href="{{url_for('black_ta',id=user.id)}}">拉黑</a>
+		  {%endif%}
+		{%endif%}  
+	  </p>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+.user_card{
+	margin:5 0 5 20px;
+}
+.user_card_avatar{
+	float:left;
+}
+.user_card_nickname{
+	margin:0 0 5px 0;
+}
+.user_card_nickname a{
+	text-decoration:none;
+	color:#4D96E9;
+}
+.user_card p{
+	margin:5px 0;
+}
+.user_card_right{
+	overflow:hidden;
+}

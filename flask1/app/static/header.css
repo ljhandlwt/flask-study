@@ -1,0 +1,122 @@
+#header{
+	width:100%;
+	position:fixed;
+	top:0;
+	left:0;
+}
+div.header_base{
+	height:70px;
+}
+div.header_background{
+	position:fixed;
+	height:38px;
+	background:rgba(100,100,100,0.3);
+	top:0;
+	left:0;
+	width:100%;
+}
+
+#header ul{
+	list-style:none;
+}
+#header li{
+	text-align:center;
+}
+#header ul.left{
+	margin-left:150px;
+}
+#header ul.left li{
+	float:left;
+}
+#header ul.right{
+	margin-right:150px;
+}
+#header ul.right li{
+	float:right;
+}
+
+#header ul li ul li{
+	clear:both;
+	width:100%;
+}
+#header ul li ul{
+	display:none;
+}
+#header ul li.header_listshow ul{
+	display:block;
+}
+
+#header a.menu_link{
+	padding:10px;
+	text-decoration:none;
+	color:white;
+	display:block;
+}
+#header a.menu_link:link{
+	background-color:red;
+}
+#header a.menu_link:visited{
+	background-color:red;
+}
+#header a.menu_link:hover{
+	background-color:#A757A8;
+}
+#header a.menu_link:active{
+	background-color:#A757A8;
+}
+
+.bubble{
+	position:absolute;
+	top:45px;
+	left:-7px;
+	width:70px;
+	height:15px;
+	border:1px solid #666;
+	border-radius:4px;
+}
+.bubble_message{
+	color:#777;
+	font-size:11px;	
+	line-height:15px;
+	text-align:center;
+}
+.bubble_tri{
+	position:absolute;
+	top:-14px;
+	left:27px;
+	width:0;
+	height:0;
+	border-width:7px;
+	border-style:solid;
+	border-color:transparent transparent #666 transparent;
+}
+
+.search form{
+	height:38px;
+	margin-left:24px;
+}
+.search input{
+	display:block;
+	float:left;
+	margin:7px 0;
+}
+.search input[type='text']{
+	padding:2px;
+	height:24px;
+	border-radius:6px;	
+}
+.search input[type='text']:focus{
+	transition:border linear .2s,box-shadow linear .5s;
+	/*-moz-transition:border linear .2s,-moz-box-shadow linear .5s;
+	-webkit-transition:border linear .2s,-webkit-box-shadow linear .5s;*/
+	outline:none;
+	border-color:rgba(93,149,242,.75);
+	box-shadow:0 0 8px rgba(93,149,242,3);
+	/*-moz-box-shadow:0 0 8px rgba(93,149,242,.5);*/
+	/*-webkit-box-shadow:0 0 8px rgba(93,149,242,3);*/
+}
+.search input[type='image']{
+	height:22px;
+	width:22px;
+	border:1px solid #CCC;
+}

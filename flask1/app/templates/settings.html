@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{%block content%}
+<form action="" method='POST' enctype="multipart/form-data" onsubmit="return settings_form_check()">
+<table>
+  <tr>
+    <td class="right">用户名:</td>
+	<td><input type='text' name='nickname' value='{{g.user.nickname}}' disabled></td>
+  </tr>
+  <tr>
+    <td class="right">头像:</td>
+	<td><input type='file' name='avatar' accept=".jpg"></td>
+  </tr>
+  <tr>
+    <td class="right">邮箱:</td>
+    <td><input type='text' name='email' value='{{g.user.email}}' disabled></td>
+  </tr>
+  <tr>
+    <td class="right">创建日期:</td>
+    <td><input type='text' name='create_time' value="{{g.user.create_time.strftime('%Y-%m-%d %H:%M:%S')}}" disabled></td>
+  </tr>
+  <tr>
+    <td class="right">个人说明:</td>
+	<td><input type='text' name='information' value='{{g.user.information}}'></td>
+  </tr>
+</table>
+{%include 'error.html'%}
+<div style="margin:15px 20px">
+  <input type='submit' name='button' class='button' value="确定"> 
+  <input type='submit' name='button' class='button' value='取消'>
+</div>
+</form>
+{%endblock%}
+
+{%block style%}
+<style type='text/css'>
+table{
+	border-spacing:15px;
+}
+</style>
+{%endblock%}
+
+{%block script%}
+<script type='text/javascript' src="{{url_for('static',filename='settings.js')}}"></script>
+{%endblock%}

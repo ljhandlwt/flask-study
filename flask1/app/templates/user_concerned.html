@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class='main_title'>
+  <h3>关注{%if g.user.id==this_user.id%}我{%else%}{{this_user.nickname}}{%endif%}的人</h3>
+  <hr>
+</div>
+<div class='user_card'>
+  {%for user in this_user.concerned%}
+	{%include 'user_card.html'%}
+	<hr>
+  {%endfor%}
+</div>
+{%endblock%}
+
+{%block style%}
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='user_card.css')}}">
+{%endblock%}

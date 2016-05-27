@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{%if title%}
+<title>{{title}}</title>
+{%else%}
+<title>myflask</title>
+{%endif%}
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='header.css')}}">
+<!--script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script-->
+<script type="text/javascript" src="{{url_for('static',filename='jquery-2.2.0.min.js')}}"</script>
+<script type="text/javascript" src="{{url_for('static',filename='user_card.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static',filename='header.js')}}"></script>
+
+{%block style%}
+{%endblock%}
+
+</head>
+<body>
+<div id="wrap">
+<div class='header_base'></div>
+<div class='header_background'></div>
+<div id="header">
+  <ul class='left'>
+	<li><a href='/index' class='menu_link'>主页</a></li>
+	{%if g.user and g.user.is_authenticated%}
+	  <li><a href="/write" class='menu_link'>发微博</a></li>
+	  <li><a href='/user/{{g.user.nickname}}/blog' class='menu_link'>我的微博</a></li>
+	  <li style='width:68px'>
+		<a href='/concern' class='menu_link'>圈子</a>
+		<ul>
+		  <li><a href='/concern' class='menu_link'>关注圈</a></li>
+		  <li><a href='/world' class='menu_link'>世界圈</a></li>
+	    </ul>
+	  </li>
+	  <li>
+		<div class='search'>
+	      <form action="{{url_for('search_user')}}" method="POST">
+			<input type='text' name='search' placeholder='搜索用户名' required>
+			<input type='image' src="{{url_for('static',filename='search.png')}}" alt='搜索'>
+		  </form>
+		</div>
+	  </li>
+	{%endif%}
+	  
+  </ul>
+  <ul class='right'>
+    {%if g.user and g.user.is_authenticated%}
+	  <li><a href='/logout' class='menu_link'>登出</a></li>
+	  <li><a href='javascript:;' class='menu_link' onclick="about()">关于</a></li>
+	  <li><a href='#' class='menu_link'>回到顶部</a></li>
+	  <li style="width:68px">
+	    <a href='javascript:;' class='menu_link'>人际</a>
+		<ul>
+		  <li><a href="{{url_for('personal_concern',nickname=g.user.nickname)}}" class='menu_link'>关注</a></li>
+		  <li><a href="{{url_for('personal_concerned',nickname=g.user.nickname)}}" class='menu_link'>粉丝</a></li>
+		  <li><a href="/blacklist" class='menu_link'>黑名单</a></li>
+		</ul>
+	  </li>
+	  <li style="position:relative">
+	    <a href='/message' class='menu_link'>消息</a>
+		{%if g.user.count_new_message()%}
+		  <div class="bubble">
+			<a href='/message/new' class='bubble_message'>
+			  {{g.user.count_new_message()}}条新消息
+			</a>
+		    <div class='bubble_tri'></div>
+		  </div>
+		{%endif%}
+	  </li>
+	  {%if g.user.is_admin()%}
+	    <li><a href='/admin' class='menu_link'>管理员</a></li>
+	  {%endif%}
+	  <li style="position:relative">
+	    <a href='/user'>
+		  <img src="{{g.user.avatar()}}" class='small_avatar' alt='头像'>
+		</a>
+	  </li>
+	{%endif%}
+  </ul>
+{%if user%}
+<!--img src='/favicon.ico' class="avatar" style="float:right"-->
+{%endif%}
+</div>
+
+<div id="mainBody">
+{%with flash_messages=get_flashed_messages()%}
+  {%if flash_messages%}
+  <ul>
+    {%for flash_message in flash_messages%}
+      <li class='message'>{{flash_message}}</li>
+	{%endfor%}
+  </ul>
+  <hr>
+  {%endif%}
+{%endwith%}
+
+{%block content%}
+{%endblock%}
+</div>
+</div>
+
+<div id="footer">
+Copyright@JH 2016
+</div>
+
+<script type='text/javascript'>
+function about(){
+	alert("作者:JH 邮箱:1412441716@qq.com");
+}
+</script>
+
+{%block script%}
+{%endblock%}
+
+{%for js in jses%}
+<script type='text/javascript' src='{{js}}'></script>
+{%endfor%}
+</body>
+</html>

@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{%block content%}
+<form action="" method="POST" name="write" class='write'>
+<div class='write-form-title'>
+  标题:<input type='text' width='200px' name='title' required autofocus>
+</div>
+<div class='write-form-body'>
+  正文:<br>
+  <textarea name='body' rows="4" cols="40" required></textarea>
+</div>
+<div class='write-form-button'>
+  <input type='submit' value='发布' class='button' name='submit'>
+  <span class='error'></span>
+</div>
+</form>
+{%endblock%}
+
+{%block style%}
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='write.css')}}">
+{%endblock%}
+
+{%block script%}
+<script type='text/javascript'>
+$("form").submit(function(e){
+	if($("input[name='title']").val()=="")
+		$(".error").html("标题不能为空!");
+	else if($("textarea").val()=="")
+		$(".error").html("内容不能为空!");
+	else if($("input[name='title']").val().length>40)
+		$(".error").html("标题太长!");	
+	else if($("textarea").val().length>140)
+		$(".error").html("内容太长!");
+	else
+		return;
+	e.preventDefault();		
+});
+</script>
+{%endblock%}

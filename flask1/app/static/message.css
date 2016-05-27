@@ -1,0 +1,15 @@
+.messages{
+	margin:0 0 0 20px;
+}
+.message{
+	margin-top:10px;
+}
+.message_content{
+	color:569FF3;
+	font-size:18px;
+	margin:10px 0;
+	font-weight:600;
+}
+.message_date{
+	font-size:12px;
+}
