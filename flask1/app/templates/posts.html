@@ -1,0 +1,23 @@
+<div class="posts">
+{%for post in posts%}
+<div class='post'>
+  <div class='post_left'>
+	<a href="{{url_for('personal',nickname=post.author.nickname)}}" class='avatar'>
+	  <img src="{{post.author.avatar()}}" class='avatar post_avatar' alt='头像'>
+	</a>
+  </div>
+  <div class='post_right'>
+	<h2 class='post_title'>{{post.title}}</h2>
+	<div>
+	  <a href="{{url_for('personal',nickname=post.author.nickname)}}" class='post_author'>{{post.author.nickname}}</a>
+	  <span class='post_date'>{{post.date.strftime('%Y-%m-%d %H:%M:%S')}}</span>
+    </div>
+    <p class='post_body'>{{post.body}}</p>
+	{%if g.user.id==post.author.id or g.user.is_admin()%}
+	  <a href="{{url_for('delete',id=post.id)}}" class='post_delete' onclick="return confirm('确认删除?')">删除</a>
+	{%endif%}
+  </div>
+  <hr>
+</div>
+{%endfor%}
+</div>

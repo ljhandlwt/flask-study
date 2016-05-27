@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div>
+<form action="{{url_for('admin_change_sicily_message')}}" method='POST'>
+  <div>sicily对话框:</div>
+  <div><textarea name='sicily_message' rows="4" cols="40"></textarea></div>
+  <div><input type='submit' value='确定'></div>
+</form>
+</div>
+<hr style="margin:10px 0">
+<div>
+<form action="{{url_for('admin_world_message')}}" method='POST'>
+  <div>world_message:</div>
+  <div><textarea name='world_message' rows="4" cols="40"></textarea></div>
+  <div><input type='submit' value='确定'></div>
+</form>
+</div>
+<hr style="margin:10px 0">
+<div>
+<table style="border-spacing:10px">
+  <tr>
+    <td>用户名</td>
+	<td>邮箱</td>
+	<td>微博数</td>
+	<td>关注数</td>
+	<td>被关注数</td>
+	<td>创建日期</td>
+	<td>个人说明</td>
+  </tr>
+  {%for user in users%}
+  <tr>
+	<td><a href="{{url_for('personal',nickname=user.nickname)}}">{{user.nickname}}</a></td>
+	<td>{{user.email}}</td>
+	<td>{{user.posts.count()}}</td>
+	<td>{{user.concern.__len__()}}</td>
+	<td>{{user.concerned.__len__()}}</td>
+	<td>{{user.create_time.strftime('%Y-%m-%d %H:%M:%S')}}</td>
+	<td>{{user.information}}</td>
+  </tr>
+  {%endfor%}
+</table>
+</div>
+{%endblock%}

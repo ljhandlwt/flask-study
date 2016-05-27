@@ -1,0 +1,17 @@
+#sicily{
+	position:absolute;
+}
+.sicily_message{
+	display:block;
+}
+div.sicily_message{
+	position:absolute;
+	top:-60px;
+	left:0;
+}
+pre.sicily_message{
+	padding:5px 20px;
+	background-image:url(/static/sicily/202.png);
+	background-size:100% 100%;
+	font-size:15px;
+}

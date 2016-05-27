@@ -1,0 +1,35 @@
+.posts{
+	margin:0 0 0 20px;
+}
+.post{
+	margin-top:10px;
+}
+.post_avatar{
+	float:left;
+}
+div.post_left{
+
+}
+div.post_right{
+	overflow:hidden;
+}
+.post_title{
+	color:#4D96E9;
+	margin:0 0 5px 0;
+}
+a.post_author{
+	color:#999;
+	font-size:12px;
+	text-decoration:none;
+}
+.post_date{
+	font-size:10px;
+	font-weight:600;
+}
+.post_body{
+	margin:20px 0;
+	white-space:pre-wrap;
+}
+.post_delete{
+	color:#E9734F;
+}

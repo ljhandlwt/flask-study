@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class='main_title'>
+  <h3>黑名单</h3>
+  <hr>
+</div>
+<div class='user_card'>
+  {%for user in g.user.blacklist%}
+	{%include 'user_card.html'%}
+    <hr>
+  {%endfor%}
+</div>
+{%endblock%}
+
+{%block style%}
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='user_card.css')}}">
+{%endblock%}

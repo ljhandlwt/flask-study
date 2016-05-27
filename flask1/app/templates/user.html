@@ -1,0 +1,78 @@
+{%extends 'base.html'%}
+{%block content%}
+<fieldset class='information'>
+<legend>个人信息</legend>
+<table>
+  <tr>
+	<td class="right">用户名:</td>
+	<td>{{user.nickname}}</td>
+  </tr>
+  <tr>
+	<td class="right">头像:</td>
+	<td><img src='{{user.avatar()}}' class='avatar' alt='头像'></td>
+  </tr>
+  <tr>
+	<td class="right">邮箱:</td>
+	<td>{{user.email}}</td>
+  </tr>
+  <tr>
+	<td class="right">创建日期:</td>
+	<td>{{user.create_time.strftime('%Y-%m-%d %H:%M:%S')}}</td>
+  </tr>
+  <tr>
+	<td class="right">微博数:</td>
+	<td>{{user.posts.count()}}</td>
+  </tr>
+  <tr>
+	<td class="right">{%if g.user.id==user.id%}我{%else%}ta{%endif%}关注的人数:</td>
+	<td>{{user.concern.__len__()}}</td>
+  </tr>
+  <tr>
+	<td class="right">关注{%if g.user.id==user.id%}我{%else%}ta{%endif%}的人数:</td>
+	<td>{{user.concerned.__len__()}}</td>
+  </tr>
+  <tr>
+	<td class="right">个人说明:</td>
+	<td>{{user.information}}</td>
+  </tr>
+</table>
+</fieldset>
+{%if g.user.id==user.id%}
+  <p><a href="/settings" style="color:red">修改个人信息</a></p>
+  <p><a href="/settings/password" style="color:red">修改密码</a></p>
+{%else%}
+  <p>
+    <a href="{{url_for('personal_blog',nickname=user.nickname)}}">看看ta的微博</a>
+	<span style='color:#BBB'>|</span>
+	{%if g.user.has_concern(user)%}
+	  <a href="{{url_for('unconcern_ta',id=user.id)}}">取消关注</a>
+	{%else%}
+	  <a href="{{url_for('concern_ta',id=user.id)}}">关注ta</a>
+	{%endif%}
+	<span style='color:#BBB'>|</span>
+	{%if g.user.has_black(user)%}
+	  <a href="{{url_for('unblack_ta',id=user.id)}}">取消拉黑</a>
+	{%else%}
+	  <a href="{{url_for('black_ta',id=user.id)}}">拉黑</a>
+	{%endif%}
+	<span style='color:#BBB'>|</span>
+	<a href="{{url_for('personal_concern',nickname=user.nickname)}}">看看ta关注的人</a>
+	<span style='color:#BBB'>|</span>
+	<a href="{{url_for('personal_concerned',nickname=user.nickname)}}">看看关注ta的人</a>
+  </p>
+{%endif%}
+{%endblock%}
+
+{%block style%}
+<style type='text/css'>
+fieldset.information{
+	width:500px;
+}
+table{
+	border-spacing:15px;
+}
+p{
+	margin:10px;
+}
+</style>
+{%endblock%}

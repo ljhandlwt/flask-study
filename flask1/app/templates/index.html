@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%block content%}
+{%include 'posts.html'%}
+<div id='sicily'>
+	<img src="{{url_for('static',filename='sicily/101.png')}}" class='sicily_body'/>
+	<img src="{{url_for('static',filename='sicily/102.png')}}" class='sicily_body'/>
+	<img src="{{url_for('static',filename='sicily/103.png')}}" class='sicily_body'/>
+	<div class='sicily_message'>
+		<img src="{{url_for('static',filename='sicily/201.png')}}" class='sicily_message'>
+		<pre class='sicily_message'>{{sicily_message}}</pre>
+		<img src="{{url_for('static',filename='sicily/203.png')}}" class='sicily_message'>
+	</span>
+</div>
+{%endblock%}
+
+{%block style%}
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='post.css')}}">
+<link rel='stylesheet' type='text/css' href="{{url_for('static',filename='sicily.css')}}">
+<style type='text/css'>
+body{
+	position:relative;
+	overflow:hidden;
+}
+</style>
+{%endblock%}
+
+{%block script%}
+<script type='text/javascript' src='{{url_for('static',filename='sicily.js')}}'></script>
+{%endblock%}
